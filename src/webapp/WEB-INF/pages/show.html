@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div style="text-align: right;padding:5px;margin:5px 0px;background:#ccc;">
+    <a href="/logout" th:text="#{exit.ref}">Exit</a>
+    &nbsp;|&nbsp;
+    <a href="/user?lang=en">EN</a>
+    &nbsp;|&nbsp;
+    <a href="/user?lang=ru">RU</a>
+</div>
+<div>
+    <table>
+        <tr>
+            <td th:text="#{th.username} + ':'">Username:</td>
+            <td th:text="${user.username}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{th.password} + ':'">Password:</td>
+            <td th:text="${user.password}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{th.name} + ':'">Name:</td>
+            <td th:text="${user.name}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{th.surname} + ':'">Last name:</td>
+            <td th:text="${user.surname}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{th.age} + ':'">Age:</td>
+            <td th:text="${user.age}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
