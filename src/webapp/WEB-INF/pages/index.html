@@ -7,11 +7,16 @@
 </head>
 <body>
 <div style="text-align: right;padding:5px;margin:5px 0px;background:#ccc;">
+    &nbsp;|&nbsp;
     <a href="?lang=en">EN</a>
     &nbsp;|&nbsp;
     <a href="?lang=ru">RU</a>
 </div>
 <h1 th:text="#{title}"></h1>
-<a href="/users" th:text="#{index.ref}"></a>
+<a href="/login" th:text="#{index.join}">Join</a>
+<br/>
+<a href="/new" th:text="#{index.reg}">Registration</a>
+
+
 </body>
 </html>

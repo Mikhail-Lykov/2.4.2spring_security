@@ -1,6 +1,7 @@
 package crud.service;
 
 import crud.dao.UserDao;
+import crud.model.Role;
 import crud.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findUser(Long id) {
         return userDao.findUser(id);
+    }
+
+    @Override
+    public Role getRole(Long id) {
+        return userDao.getRole(id);
     }
 }

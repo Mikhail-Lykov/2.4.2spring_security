@@ -76,6 +76,6 @@ public class WebConfig implements WebMvcConfigurer {
         localeInterceptor.setParamName("lang");
 
         registry.addInterceptor(localeInterceptor).addPathPatterns("/*");
-        registry.addInterceptor(localeInterceptor).addPathPatterns("/users/*");
+        registry.addInterceptor(localeInterceptor).addPathPatterns("/admin/*");
     }
 }

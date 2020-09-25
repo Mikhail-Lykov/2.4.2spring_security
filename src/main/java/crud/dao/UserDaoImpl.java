@@ -1,13 +1,11 @@
 package crud.dao;
 
+import crud.model.Role;
 import crud.model.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -42,5 +40,20 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUser(Long id) {
         return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public Role getRole(Long id) {
+        return entityManager.find(Role.class, id);
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        for(User user : allUsers()){
+            if(user.getUsername().equals(username)){
+                return user;
+            }
+        }
+        return null;
     }
 }

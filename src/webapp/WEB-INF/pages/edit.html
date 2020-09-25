@@ -7,14 +7,25 @@
 </head>
 <body>
 <div style="text-align: right;padding:5px;margin:5px 0px;background:#ccc;">
-    <a th:href="@{/users/{id}(id=${user.id},lang='en')}">EN</a>
+    <a href="/logout" th:text="#{exit.ref}">Exit</a>
     &nbsp;|&nbsp;
-    <a th:href="@{/users/{id}(id=${user.id},lang='ru')}">RU</a>
+    <a th:href="@{/admin/{id}(id=${user.id},lang='en')}">EN</a>
+    &nbsp;|&nbsp;
+    <a th:href="@{/admin/{id}(id=${user.id},lang='ru')}">RU</a>
 </div>
 <div>
-    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <form th:method="POST" th:action="@{/admin}" th:object="${user}">
+        <a th:if="${message}" STYLE="color: brown" th:text="${message}"></a>
         <input type="hidden" id="id" th:field="*{id}">
         <table>
+            <tr>
+                <td><label for="username" th:text="#{th.username} + ':'">Username:</label></td>
+                <td><input type="text" th:field="*{username}" id="username"></td>
+            </tr>
+            <tr>
+                <td><label for="password" th:text="#{th.password} + ':'">Password:</label></td>
+                <td><input type="text" th:field="*{password}" id="password"></td>
+            </tr>
             <tr>
                 <td><label for="name" th:text="#{th.name} + ':'">Name:</label></td>
                 <td><input type="text" th:field="*{name}" id="name" th:value="${user.name}"></td>
@@ -28,11 +39,16 @@
                 <td><input type="text" th:field="*{age}" id="age" th:value="${user.age}"></td>
             </tr>
         </table>
+        <div th:if="${adminRole}">
+            <input type="checkbox" id="admin" name="adminRole" checked value="1">
+            <label for="admin" th:text="#{role.admin}"> Admin role</label>
+        </div>
+        <div th:unless="${adminRole}">
+            <input type="checkbox" id="admin1" name="adminRole" value="1">
+            <label for="admin1" th:text="#{role.admin}"> Admin role</label>
+        </div>
         <br/>
         <input type="submit" th:value="#{button.edit}" style="float: left; margin-right: 20px">
-    </form>
-    <form th:method="POST" th:action="@{/users/{id}(id=${user.id})}" th:object="${user}">
-        <input type="submit" th:value="#{button.del}">
     </form>
 </div>
 </body>

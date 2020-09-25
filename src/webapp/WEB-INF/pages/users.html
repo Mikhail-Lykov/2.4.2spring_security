@@ -7,29 +7,39 @@
 </head>
 <body>
 <div style="text-align: right;padding:5px;margin:5px 0px;background:#ccc;">
-    <a href="/users?lang=en">EN</a>
+    <a href="/logout" th:text="#{exit.ref}">Exit</a>
     &nbsp;|&nbsp;
-    <a href="/users?lang=ru">RU</a>
+    <a href="/admin?lang=en">EN</a>
+    &nbsp;|&nbsp;
+    <a href="/admin?lang=ru">RU</a>
 </div>
 <div>
 <table border="1">
     <tr>
-        <th th:text="#{th.name}">Name</th>
-        <th th:text="#{th.surname}">Surname</th>
-        <th th:text="#{th.age}">Age</th>
+        <th th:text="#{th.username}">UserName</th>
+        <th th:text="#{th.password}">Password</th>
+        <th th:text="#{th.role}">Roles</th>
+        <th></th>
+        <th></th>
     </tr>
     <tr th:each="user : ${users}">
-        <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.name}">Name</a></td>
-        <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.surname}">Surname</a></td>
-        <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.age}">Age</a></td>
+        <td><a th:href="@{/user/{id}(id=${user.id})}" th:text="${user.username}"></a></td>
+        <td th:text="${user.password}"></td>
+        <td>
+            <a th:each="r : ${user.roles}" th:text="${r.getRole()} + '; '"></a>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
+                <input type="submit" th:value="#{button.edit}">
+            </form>
+        </td>
+        <td>
+            <form th:method="POST" th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
+                <input type="submit" th:value="#{button.del}">
+            </form>
+        </td>
     </tr>
 </table>
-</div>
-<br/>
-<div>
-    <form method="get" th:action="@{/users/new}">
-        <input type="submit" th:value="#{users.button}">
-    </form>
 </div>
 </body>
 </html>

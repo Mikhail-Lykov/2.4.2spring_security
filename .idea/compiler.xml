@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="2.4.2spring_security" />
         <module name="2.3.1crud_application" />
       </profile>
     </annotationProcessing>
